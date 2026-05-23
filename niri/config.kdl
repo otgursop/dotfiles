@@ -33,8 +33,8 @@ input {
 }
 
 // Output
-output "DVI-I-1" {
-  mode "1920x1080@60.000"
+output "HDMI-A-1" {
+  mode "1920x1080@120.000"
   scale 1
   // variable-refresh-rate
   transform "normal"
@@ -114,13 +114,14 @@ layout {
 // See the binds section below for more spawn examples.
 
 // General
-// spawn-at-startup "/usr/lib/xdg-desktop-portal"
-// spawn-at-startup "/usr/lib/xdg-desktop-portal-gtk"
+spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 // Bar
 spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config-niri.jsonc -s ~/.config/waybar/niri/style-niri.css"
 // Daemons
 spawn-at-startup "dunst"
 spawn-at-startup "awww-daemon"
+spawn-at-startup "hypridle"
 // Applets
 spawn-at-startup "nm-applet"
 spawn-at-startup "blueman-applet"
@@ -132,9 +133,9 @@ spawn-sh-at-startup "wl-paste --watch cliphist store"
 // Environment variables
 environment {
   // Rendering
-  GSK_RENDERER "opengl"
+  GSK_RENDERER "vulkan"
   GDK_BACKEND "wayland"
-  // SDL_VIDEODRIVER "wayland"
+  SDL_VIDEODRIVER "wayland"
   // WLR_DRM_NO_ATOMIC "1"
 
   // Wayland
@@ -192,14 +193,14 @@ window-rule {
   open-floating true
 }
 
-// With proportion 1.0
+// Open with 1.0 proportion
 window-rule {
   match title=r#"(LibreWolf|FireFox|Firefox)"#
   default-column-width { proportion 1.0; }
   open-maximized false
 }
 
-// IDK  
+// ?
 /-window-rule {
   match app-id=r#"^org\.wezfurlong\.wezterm$"#
   default-column-width {}
@@ -225,6 +226,11 @@ window-rule {
   // block-out-from "screencast"
 }
 
+/-window-rule {
+  match app-id=r#"^(steam|Steam|ddnet|DDNet)$"#
+  variable-refresh-rate true
+}
+
 window-rule {
   geometry-corner-radius 0
   clip-to-geometry true
@@ -246,21 +252,24 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   // Applications
-  Mod+Shift+Return hotkey-overlay-title="Open Terminal: foot" { spawn "foot"; }
+  Mod+Shift+Return hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot tmux"; }
   Mod+T hotkey-overlay-title="Open Browser: librewolf" { spawn "librewolf"; }
   Mod+D hotkey-overlay-title="Open File Manager: yazi" { spawn-sh "foot -e yazi"; }
 
-  // Open smth
+  // Open ...
   Mod+M hotkey-overlay-title="Open Clipboard History: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist_menu.sh"; }
   Mod+Shift+M hotkey-overlay-title="Open Bemoji: fuzzel" { spawn-sh "bemoji"; }
   Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power_menu.sh"; }
   Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system_menu.sh"; }
-  // Run smth
+  // Run ...
   Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel --list-executables-in-path --prompt='Execute: '"; }
   Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt='Launch: '"; }
 
   // Screen
+  Mod+X hotkey-overlay-title="Copy color: hyprpicker" { spawn-sh "hyprpicker -a"; }
   Mod+S hotkey-overlay-title="Lock the screen: hyprlock" { spawn-sh "hyprlock --no-fade-in"; }
+
+  // Bar
   Mod+Shift+B hotkey-overlay-title="Reload waybar" { spawn-sh "killall -SIGUSR2 waybar"; }
   Mod+B hotkey-overlay-title="Toggle waybar" { spawn-sh "killall -SIGUSR1 waybar"; }
 
