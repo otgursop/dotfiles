@@ -7,8 +7,15 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # ZSH path
 export ZSH="$HOME/.oh-my-zsh"
 
+# ZSH_COMPDUMP
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+
+# Update check
+zstyle ':omz:update' mode disabled
+
 # Theme
 ZSH_THEME="eastwood"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#a89984,underline"
 
 # Plugins
 plugins=(git)
@@ -26,13 +33,16 @@ if [[ -n $SSH_CONNECTION ]]; then
 # ALIASES
 #####################
 
+alias wstart="~/.winit.sh"
+
 alias ls="lsd"
 alias cd="z"
 alias cat="bat"
 
 alias sl="cd ~/.local/sl/"
-alias cdc="cd ~/Code/c/"
-alias cdp="cd ~/Code/cpp/"
+alias wl="cd ~/.local/wl"
+alias cdc="cd ~/code/c/"
+alias cdp="cd ~/code/cpp/"
 
 alias v="nvim"
 
