@@ -1,18 +1,18 @@
 {
   // General
-  "height": 30,
-  "spacing": 12,
+  "height": 25,
+  "spacing": 8,
   "position": "top",
 
   // Modules
   "modules-left": [
     "group/Workspaces",
     "custom/split",
-    "mpris"
-    // "group/Windows"
+    "group/Windows"
   ],
 
   "modules-right": [
+    "mpris",
     "custom/split",
     "group/Language",
     "custom/split",
@@ -131,15 +131,15 @@
   "niri/workspaces": {
     "format": "{icon}",
     "format-icons": {
-        "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
+        "1": "a",
+        "2": "b",
+        "3": "c",
+        "4": "4",
         "5": "5",
         "6": "6",
         "7": "7",
-        "8": " ",
-        "9": "a",
+        "8": "8",
+        "9": "9",
         "10": "*"
     },
     "persistent-workspaces": {
@@ -149,7 +149,10 @@
 
   "niri/window": {
     "format": "{title}",
-    "icon": true,
+    "rewrite": {
+      "^$": "<i>Window title</i>"
+    },
+    "icon": false,
     "icon-size": 16,
     "max-length": 70,
     "min-length": 5,
@@ -164,7 +167,7 @@
 
   // Default
   "mpris": {
-    "format": "{status_icon} -  Output",
+    "format": "{status_icon} Output",
     "interval": 1,
     "dynamic-len": 40,
     "status-icons": {
@@ -172,7 +175,7 @@
       "paused": "󰐊",
       "stopped": "..."
     },
-    "dynamic-order": ["title", "album", "artist", "position", "length"]
+    "dynamic-order": ["artist"]
   },
 
   "cpu": {
@@ -209,10 +212,10 @@
     "rfkill": true,
 
     "format-wifi": "󰖩 {essid}",
-    "format-ethernet": "󰌗 LAN",
-    "format-linked": "Linked",
-    "format-disconnected": "󰖪 Disconnected",
-    "format-disabled": "󱚵 Disabled",
+    "format-ethernet": "LAN",
+    "format-linked": "LINK",
+    "format-disconnected": "DISC",
+    "format-disabled": "DISA",
 
     "tooltip": true,
     "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
@@ -227,10 +230,10 @@
     "format": "  {volume}%",
     "format-muted": " Muted",
     "interval": 5,
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-click-right": "exec blueman-manager",
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    // "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    // "on-click-right": "exec blueman-manager",
+    // "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    // "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
     "scroll-step": 5,
     "tooltip-format": "{node_name}"
   },
@@ -242,7 +245,7 @@
 
   // Custom
   "custom/vpn-status": {
-    "format": " {}", //
+    "format": "{}", //
     "exec": "~/.config/waybar/scripts/vpn_status.sh",
     "interval": 2,
     "tooltip": false

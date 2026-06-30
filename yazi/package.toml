@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "1962818"
-hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+rev = "39aaf6d"
+hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "1962818"
-hash = "91937a4a9b779eabc6983e258befdfe9"
+rev = "39aaf6d"
+hash = "e3260d0b1feded8c8e3ae3afa1169e30"
 
 [flavor]
 deps = []

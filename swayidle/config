@@ -1,0 +1,3 @@
+timeout 300 "hyprlock --grace 0 --immediate-render --no-fade-in"
+before-sleep "hyprlock --grace 0 --immediate-render --no-fade-in"
+lock "hyprlock --grace 0 --immediate-render --no-fade-in"

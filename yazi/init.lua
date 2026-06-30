@@ -1,3 +1,4 @@
+-- CUSTOM
 Status:children_add(function()
 	local h = cx.active.current.hovered
 	if h == nil or ya.target_family() ~= "unix" then
@@ -19,6 +20,7 @@ Header:children_add(function()
     return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("#87CEFA")
 end, 500, Header.LEFT)
 
+-- PLUGINS
 require("full-border"):setup({
 	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
 	type = ui.Border.PLAIN,

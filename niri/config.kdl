@@ -1,8 +1,33 @@
+// Debug
+debug {
+  enable-overlay-planes
+  // force-disable-connectors-on-resume
+  // skip-cursor-only-updates-during-vrr
+  honor-xdg-activation-with-invalid-serial
+}
+
 // General
 prefer-no-csd
+
 // XWayland support
 xwayland-satellite {
   on
+}
+
+// Animations
+animations {
+  off
+  //slowdown 3.0
+}
+
+// Screenshots path to save
+screenshot-path "~/pictures/scrshots-niri/scrshot-%Y-%m-%d-%H-%M-%S.png"
+// Disable saving screenshots to disk.
+// screenshot-path null
+
+// Hotkey-overlay
+hotkey-overlay {
+  skip-at-startup
 }
 
 // Input
@@ -10,12 +35,11 @@ input {
   keyboard {
     repeat-rate 35
     repeat-delay 400
+    track-layout "window"
 
     xkb {
       layout "us,ru"
       options "grp:alt_shift_toggle,ctrl:nocaps"
-
-      //options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
     }
 
     numlock
@@ -30,6 +54,17 @@ input {
   // Focus windows and outputs automatically when moving the mouse into them.
   // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
   focus-follows-mouse max-scroll-amount="0%"
+
+  mod-key "Super"
+  // mod-key-nested "Alt"
+}
+
+cursor {
+    // xcursor-theme "breeze_cursors"
+    xcursor-size 10
+
+    hide-when-typing
+    // hide-after-inactive-ms 1000
 }
 
 // Output
@@ -38,7 +73,15 @@ output "HDMI-A-1" {
   scale 1
   // variable-refresh-rate
   transform "normal"
-  position x=1280 y=0 
+  // position x=1280 y=0
+
+  hot-corners {
+    off
+    // top-left
+    // top-right
+    // bottom-left
+    // bottom-right
+  }
 }
 
 // Layout
@@ -53,12 +96,12 @@ layout {
   //   together with the previously focused column.
   center-focused-column "never"
 
-  preset-column-widths {
+  background-color "#3c3836"
 
+  preset-column-widths {
     proportion 0.33333
     proportion 0.5
     proportion 0.66667
-
     // Fixed sets the width in logical pixels exactly.
     // fixed 1920
   }
@@ -120,8 +163,8 @@ spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPL
 spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config-niri.jsonc -s ~/.config/waybar/niri/style-niri.css"
 // Daemons
 spawn-at-startup "dunst"
-spawn-at-startup "awww-daemon"
-spawn-at-startup "hypridle"
+//spawn-at-startup "awww-daemon"
+spawn-at-startup "swayidle"
 // Applets
 spawn-at-startup "nm-applet"
 spawn-at-startup "blueman-applet"
@@ -136,6 +179,7 @@ environment {
   GSK_RENDERER "vulkan"
   GDK_BACKEND "wayland"
   SDL_VIDEODRIVER "wayland"
+  LIBVA_DRIVER_NAME "radeonsi"
   // WLR_DRM_NO_ATOMIC "1"
 
   // Wayland
@@ -147,8 +191,9 @@ environment {
   QT_QPA_PLATFORM "wayland"
 
   // Appearance
-  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_QPA_PLATFORMTHEME "qt5ct"
   QT_STYLE_OVERRIDE "kvantum"
+  QT_AUTO_SCREEN_SCALE_FACTOR "1"
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 
   // Other useful variables
@@ -156,20 +201,6 @@ environment {
   MOZ_ENABLE_WAYLAND "1"
   _JAVA_AWT_WM_NONREPARENTING "1"
   ELECTRON_OZONE_PLATFORM_HINT "wayland"
-}
-
-hotkey-overlay {
-  skip-at-startup
-}
-
-// You can change the path where screenshots are saved.
-screenshot-path "~/pictures/scrshots-niri/scrshot-%Y-%m-%d-%H-%M-%S.png"
-
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
-
-animations {
-  //slowdown 3.0
 }
 
 workspace "1" {}
@@ -189,13 +220,13 @@ window-rule {
 
 // Float and center windows by app-id
 window-rule {
-  match app-id=r#"(blueman-manager|blueman-services|nwg-look|org\.qbittorrent\.qBittorrent|kvantummanager|.*-polkit|nm-connection-editor|qt5ct|mp|vlc|xdg-desktop-portal-gtk|org\.gnome\.eog|qt6ct|imv)"#
+  match app-id=r#"(blueman-manager|blueman-services|nwg-look|org\.qbittorrent\.qBittorrent|kvantummanager|.*-polkit|nm-connection-editor|qt5ct|mpv|vlc|xdg-desktop-portal-gtk|org\.gnome\.eog|qt6ct|qt5ct|imv)"#
   open-floating true
 }
 
 // Open with 1.0 proportion
 window-rule {
-  match title=r#"(LibreWolf|FireFox|Firefox)"#
+  match title=r#"(LibreWolf|FireFox|Firefox|Telegram)"#
   default-column-width { proportion 1.0; }
   open-maximized false
 }
@@ -215,8 +246,8 @@ window-rule {
   open-floating true
 }
 
-// Example: block out two password managers from screen capture.
-/-window-rule {
+// Block out two password managers from screen capture.
+window-rule {
   match app-id=r#"^org\.keepassxc\.KeePassXC$"#
   match app-id=r#"^org\.gnome\.World\.Secrets$"#
 
@@ -252,7 +283,8 @@ binds {
   Mod+Shift+Slash { show-hotkey-overlay; }
 
   // Applications
-  Mod+Shift+Return hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot tmux"; }
+  Mod+Return hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot"; }
+  Mod+Shift+Return hotkey-overlay-title="Open Terminal: foot with tmux" { spawn-sh "foot -e tmux"; }
   Mod+T hotkey-overlay-title="Open Browser: librewolf" { spawn "librewolf"; }
   Mod+D hotkey-overlay-title="Open File Manager: yazi" { spawn-sh "foot -e yazi"; }
 
@@ -262,12 +294,12 @@ binds {
   Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power_menu.sh"; }
   Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system_menu.sh"; }
   // Run ...
-  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel --list-executables-in-path --prompt='Execute: '"; }
+  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt='Execute: '"; }
   Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt='Launch: '"; }
 
   // Screen
   Mod+X hotkey-overlay-title="Copy color: hyprpicker" { spawn-sh "hyprpicker -a"; }
-  Mod+S hotkey-overlay-title="Lock the screen: hyprlock" { spawn-sh "hyprlock --no-fade-in"; }
+  Mod+S hotkey-overlay-title="Lock the screen: swayidle" { spawn-sh "hyprlock --grace 0 --immediate-render --no-fade-in"; }
 
   // Bar
   Mod+Shift+B hotkey-overlay-title="Reload waybar" { spawn-sh "killall -SIGUSR2 waybar"; }
