@@ -122,11 +122,11 @@ layout {
 
   border {
     width 3
-    active-color "#d65d0e"
+    //active-color "#d65d0e"
+    active-gradient from="#d65d0e" to="#d79921" angle=90 relative-to="workspace-view"
     inactive-color "#504945"
     urgent-color "#9b0000"
   }
-
   shadow {
     off
     // Softness controls the shadow blur radius.
@@ -214,13 +214,13 @@ workspace "8" {}
 
 // Float and center windows by title
 window-rule {
-  match title=r#"(Rename ".*\*.*"|File Operation Progress|Confirm to replace files|Attention|Rename file|Choose file|Choose files|Font Manager|Volume Control|Qalculate!|Library|Add bookmark|Bluetooth Devices|Create Document from .*|New .* ...|Create New)"#
+  match title=r#"(Rename ".*\*.*"|Rename ".*"|File Operation Progress|Confirm to replace files|Attention|Rename file|Choose file|Choose files|Font Manager|Volume Control|Qalculate!|Library|Add bookmark|Bluetooth Devices|Create Document from .*|New .* ...|Create New)"#
   open-floating true
 }
 
 // Float and center windows by app-id
 window-rule {
-  match app-id=r#"(blueman-manager|blueman-services|nwg-look|org\.qbittorrent\.qBittorrent|kvantummanager|.*-polkit|nm-connection-editor|qt5ct|mpv|vlc|xdg-desktop-portal-gtk|org\.gnome\.eog|qt6ct|qt5ct|imv)"#
+  match app-id=r#"(blueman-manager|blueman-services|nwg-look|org\.qbittorrent\.qBittorrent|kvantummanager|.*-polkit|nm-connection-editor|qt5ct|mpv|vlc|org\.gnome\.eog|qt6ct|qt5ct|imv)"#
   open-floating true
 }
 
@@ -250,6 +250,7 @@ window-rule {
 window-rule {
   match app-id=r#"^org\.keepassxc\.KeePassXC$"#
   match app-id=r#"^org\.gnome\.World\.Secrets$"#
+  match app-id=r#"librewolf"#
 
   block-out-from "screen-capture"
 
@@ -265,6 +266,7 @@ window-rule {
 window-rule {
   geometry-corner-radius 0
   clip-to-geometry true
+  draw-border-with-background false
 }
 
 binds {
@@ -290,7 +292,7 @@ binds {
 
   // Open ...
   Mod+M hotkey-overlay-title="Open Clipboard History: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist_menu.sh"; }
-  Mod+Shift+M hotkey-overlay-title="Open Bemoji: fuzzel" { spawn-sh "bemoji"; }
+  Mod+Shift+M hotkey-overlay-title="Open Bemoji: fuzzel" { spawn-sh "bemoji -n"; }
   Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power_menu.sh"; }
   Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system_menu.sh"; }
   // Run ...
@@ -515,7 +517,7 @@ binds {
   // Toggle tabbed column display mode.
   // Windows in this column will appear as vertical tabs,
   // rather than stacked on top of each other.
-  Mod+W { toggle-column-tabbed-display; }
+  // Mod+W { toggle-column-tabbed-display; }
 
   // Actions to switch layouts.
   // Note: if you uncomment these, make sure you do NOT have

@@ -14,6 +14,8 @@
 
   "modules-right": [
     "custom/split",
+    "custom/weather-status",
+    "custom/split",
     "group/Language",
     "custom/split",
     "group/Volume",
@@ -132,15 +134,15 @@
     "format": "{icon}",
     "format-icons": {
         "1": "",
-        "2": "",
-        "3": "",
-        "4": "",
-        "5": "5",
+        "2": "󰥖",
+        "3": "󰍦",
+        "4": "󱔗",
+        "5": " ",
         "6": "6",
         "7": "7",
         "8": " ",
-        "9": "a",
-        "10": "*"
+        "9": " ",
+        "10": "󰑊"
     },
     "persistent-workspaces": {
       "*": 10
@@ -245,6 +247,13 @@
     "format": " {}", //
     "exec": "~/.config/waybar/scripts/vpn_status.sh",
     "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/weather-status": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/weather_status.sh",
+    "interval": 600,
     "tooltip": false
   }
 

@@ -202,3 +202,8 @@ window#waybar.empty #window {
   color: @text;
   border-top: 3px solid @yellow-color;
 }
+
+#custom-weather-status {
+  color: @text;
+  border-top: 3px solid @yellow-color;
+}
