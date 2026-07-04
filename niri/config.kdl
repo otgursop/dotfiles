@@ -4,6 +4,9 @@ debug {
   // force-disable-connectors-on-resume
   // skip-cursor-only-updates-during-vrr
   honor-xdg-activation-with-invalid-serial
+
+  // preview-render "screencast"
+  // preview-render "screen-capture"
 }
 
 // General

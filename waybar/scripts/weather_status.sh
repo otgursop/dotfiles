@@ -7,7 +7,6 @@ CITY="${1:-Chelyabinsk}"
 CACHE_FILE="/tmp/weather-${CITY}.cache"
 CACHE_TIME=600  # 10 minutes
 
-# Check cache
 if [ -f "$CACHE_FILE" ]; then
     AGE=$(( $(date +%s) - $(stat -c %Y "$CACHE_FILE") ))
     if [ "$AGE" -lt "$CACHE_TIME" ]; then
@@ -16,13 +15,12 @@ if [ -f "$CACHE_FILE" ]; then
     fi
 fi
 
-# Fetch weather data (format: location, condition, temperature)
-WEATHER=$(curl -s "wttr.in/${CITY}?format=%c+%t" 2>/dev/null)
+WEATHER=$(curl -sf --max-time 5 "wttr.in/${CITY}?format=%c+%t" 2>/dev/null)
+
+OUTPUT=""
 
 if [ -n "$WEATHER" ]; then
-    # Extract temperature
-    TEMP=$(echo "$WEATHER" | grep -oP '[+-]?\d+' | tail -1)
-    CONDITION=$(echo "$WEATHER" | grep -oP '^[^0-9+-]+' | sed 's/ *$//')
+    TEMP=$(echo "$WEATHER" | grep -oE '[+-]?[0-9]+' | tail -1)
     
     if [ -n "$TEMP" ]; then
         # Choose icon based on temperature
@@ -39,15 +37,14 @@ if [ -n "$WEATHER" ]; then
         fi
         
         OUTPUT="${ICON} ${TEMP}°C"
-    else
-        OUTPUT="🌡️ --"
     fi
-else
-    OUTPUT="🌡️ --"
 fi
 
-# Save to cache
+if [ -z "$OUTPUT" ]; then
+    echo "🌡️ --"
+    exit 0
+fi
+
 echo "$OUTPUT" > "$CACHE_FILE"
 
-# Output
 echo "$OUTPUT"
