@@ -1,10 +1,9 @@
 {
   // General
   "ips": true,
-  "height": 25,
-  "spacing": 0,
+  "height": 30,
+  "spacing": 12,
   "position": "top",
-  "layer": "bottom",
 
   // Pixmap
   "margin-left": 0,
@@ -12,62 +11,142 @@
 
   // Modules
   "modules-left": [
-    "niri/workspaces"
-  ],
-
-  "modules-center": [
+    "group/Workspaces",
+    "custom/split",
+    "mpris"
+    // "group/Windows"
   ],
 
   "modules-right": [
-    "mpris",
     "custom/split",
     "custom/weather-status",
     "custom/split",
-    "niri/language",
+    "group/Language",
+    "custom/split",
+    "group/Volume",
     "custom/split",
     "memory",
     "custom/split",
-    "wireplumber",
-    "custom/split",
     "custom/vpn-status",
-    "network",
+    "group/Network",
     "custom/split",
-    "clock",
+    "group/Clock",
     "custom/split",
-    "idle_inhibitor",
-    "tray"
+    "group/Utils",
+    "custom/sprt3",
+    "group/Tray"
   ],
 
-  // Separators
+  // Sprts
   "custom/split": {
     "format": "|",
     "tooltip": false
   },
+
   "custom/sprt": {
     "format": " ",
     "tooltip": false
+  },
+  
+  "custom/sprt2": {
+    "format": " \\ ",
+    "tooltip": false
+  },
+
+  "custom/sprt3": {
+    "format": "\\",
+    "tooltip": false
+  },
+
+  // Groups
+  "group/Tray": {
+    "orientation": "horizontal",
+    "modules": [
+      "tray"
+    ]
+  },
+
+  "group/Utils": {
+    "orientation": "horizontal",
+    "modules": [
+      "idle_inhibitor"
+    ]
+  },
+
+  "group/System": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "custom/sprt2",
+      "memory"
+    ]
+  },
+
+  "group/Language": {
+    "orientation": "horizontal",
+    "modules": [
+      "niri/language"
+    ]
+  },
+
+  "group/Volume": {
+    "orientation": "horizontal",
+    "modules": [
+      "wireplumber"
+    ]
+  },
+
+  "group/Network": {
+    "orientation": "horizontal",
+    "modules": [
+      "network"
+    ]
+  },
+
+  "group/Clock": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock"
+    ]
+  },
+
+  "group/Windows": {
+    "orientation": "horizontal",
+    "modules": [
+      "niri/window"
+    ]
+  },
+
+  "group/Workspaces": {
+    "orientation": "horizontal",
+    "modules": [
+      "niri/workspaces"
+    ]
   },
 
   // niri
   "niri/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10"
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "8",
+        "9": "9",
+        "10": "10"
+    },
+    "persistent-workspaces": {
+      "*": 10
     }
   },
 
   "niri/window": {
     "format": "{title}",
-    "icon": false,
+    "icon": true,
     "icon-size": 16,
     "max-length": 70,
     "min-length": 5,
@@ -75,12 +154,12 @@
   },
 
   "niri/language": {
-    "format-en": "en",
-    "format-ru": "ru",
+    "format-en": "EN",
+    "format-ru": "RU",
     "min-length": 0
   },
 
-  // Default modules
+  // Default
   "mpris": {
     "format": "{status_icon} -  Output",
     "interval": 1,
@@ -125,22 +204,25 @@
     "interval": 10,
     "family": "ipv4",
     "rfkill": true,
+
     "format-wifi": "󰖩 {essid}",
     "format-ethernet": "󰌗 LAN",
-    "format-linked": "linked",
-    "format-disconnected": "󰖪 disconnected",
-    "format-disabled": "󱚵 disabled",
+    "format-linked": "Linked",
+    "format-disconnected": "󰖪 Disconnected",
+    "format-disabled": "󱚵 Disabled",
+
     "tooltip": true,
     "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
     "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask} (/{cidr})",
     "tooltip-format-disconnected": "No active connection",
     "tooltip-format-disabled": "Wireless blocked by rfkill",
+
     "on-click": "nm-connection-editor"
   },
 
   "wireplumber": {
     "format": "  {volume}%",
-    "format-muted": " muted",
+    "format-muted": " Muted",
     "interval": 5,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "exec blueman-manager",
@@ -150,15 +232,6 @@
     "tooltip-format": "{node_name}"
   },
 
-  "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-    "critical-threshold": 80,
-    "format": " {temperatureC}°C",
-    "format-critical": " {temperatureC}°C",
-    "interval": 3,
-    "tooltip": false
-  },
-
   "tray": {
     "icon-size": 20,
     "spacing": 5
@@ -166,15 +239,21 @@
 
   // Custom
   "custom/vpn-status": {
-    "format": " {}",
+    "format": " {}", //
     "exec": "~/.config/waybar/scripts/vpn_status.sh",
     "interval": 2,
     "tooltip": false
   },
+
   "custom/weather-status": {
     "format": "{}",
     "exec": "~/.config/waybar/scripts/weather_status.sh",
     "interval": 600,
     "tooltip": false
-  }
+  },
+
+  // "custom/power-menu": {
+  //   "format": " ⏻ ",
+  //   "tooltip": false
+  // }
 }

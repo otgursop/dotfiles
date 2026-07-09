@@ -30,7 +30,7 @@ if [ -n "$WEATHER" ]; then
             ICON="❄️"
         elif [ "$TEMP" -lt 15 ]; then
             ICON="🌤️"
-        elif [ "$TEMP" -lt 25 ]; then
+        elif [ "$TEMP" -lt 29 ]; then
             ICON="☀️"
         else
             ICON="🔥"

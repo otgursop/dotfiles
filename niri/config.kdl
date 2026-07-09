@@ -99,7 +99,7 @@ layout {
   //   together with the previously focused column.
   center-focused-column "never"
 
-  background-color "#3c3836"
+  background-color "#181818"
 
   preset-column-widths {
     proportion 0.33333
@@ -166,7 +166,7 @@ spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPL
 spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config-niri.jsonc -s ~/.config/waybar/niri/style-niri.css"
 // Daemons
 spawn-at-startup "dunst"
-//spawn-at-startup "awww-daemon"
+// spawn-at-startup "awww-daemon"
 spawn-at-startup "swayidle"
 // Applets
 spawn-at-startup "nm-applet"
@@ -253,7 +253,7 @@ window-rule {
 window-rule {
   match app-id=r#"^org\.keepassxc\.KeePassXC$"#
   match app-id=r#"^org\.gnome\.World\.Secrets$"#
-  match app-id=r#"librewolf"#
+  // match app-id=r#"librewolf"#
 
   block-out-from "screen-capture"
 
@@ -299,8 +299,8 @@ binds {
   Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power_menu.sh"; }
   Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system_menu.sh"; }
   // Run ...
-  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt='Execute: '"; }
-  Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt='Launch: '"; }
+  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt=' > ' --placeholder='run'"; }
+  Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt=' > ' --placeholder='drun'"; }
 
   // Screen
   Mod+X hotkey-overlay-title="Copy color: hyprpicker" { spawn-sh "hyprpicker -a"; }

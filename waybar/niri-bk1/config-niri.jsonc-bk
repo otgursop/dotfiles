@@ -1,0 +1,118 @@
+{
+  // General
+  "height": 30,
+  "spacing": 12,
+  "position": "top",
+
+  // Modules
+  "modules-left": [
+    "clock",
+    "custom/split"
+  ],
+
+  "modules-center": [
+    "niri/workspaces",
+    "mpris"
+  ],
+
+  "modules-right": [
+    "custom/split",
+    "niri/language",
+    "custom/split",
+    "wireplumber",
+    "custom/split",
+    "custom/split",
+    "idle_inhibitor",
+    "custom/split2",
+    "tray"
+  ],
+
+  // Sprts
+  "custom/split": {
+    "format": "|",
+    "tooltip": false
+  },
+
+  "custom/split2": {
+    "format": "\\",
+    "tooltip": false
+  },
+
+  // niri
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+        "1": "1",
+        "2": "2",
+        "3": "3",
+        "4": "4",
+        "5": "5",
+        "6": "6",
+        "7": "7",
+        "8": "%",
+        "9": "*"
+    },
+    "persistent-workspaces": {
+      // "*": 9
+    }
+  },
+
+  "niri/window": {
+    "format": "{}",
+    "icon": true,
+    "icon-size": 16,
+    "max-length": 125,
+    "min-length": 5,
+    "all-outputs": true
+  },
+
+  "niri/language": {
+    "format-en": " en",
+    "format-ru": " ru",
+    "min-length": 0
+  },
+
+  // Default
+  "mpris": {
+    "format": "music {status_icon}",
+    "interval": 1,
+    "dynamic-len": 40,
+    "status-icons": {
+      "playing": "󰏤",
+      "paused": "󰐊",
+      "stopped": "stopped"
+    },
+    "dynamic-order": ["artist"]
+  },
+
+  "clock": {
+    "format": " {:%H:%M  󰃰 %d.%m}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 10
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+  },
+
+  "wireplumber": {
+    "format": "  {volume}%",
+    "format-muted": " muted",
+    "interval": 10,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "exec blueman-manager",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "scroll-step": 5,
+    "tooltip-format": "{node_name}"
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 5
+  },
+}

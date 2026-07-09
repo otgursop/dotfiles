@@ -1,7 +1,7 @@
 {
   // General
   "ips": true,
-  "height": 25,
+  "height": 30,
   "spacing": 0,
   "position": "top",
   "layer": "bottom",
@@ -12,30 +12,25 @@
 
   // Modules
   "modules-left": [
-    "niri/workspaces"
+    "tray",
+    "idle_inhibitor",
+    "niri/workspaces",
+    "custom/weather-status",
+    "mpris"
   ],
 
   "modules-center": [
+    "memory",
+    "cpu",
+    "temperature"
   ],
 
   "modules-right": [
-    "mpris",
-    "custom/split",
-    "custom/weather-status",
-    "custom/split",
     "niri/language",
-    "custom/split",
-    "memory",
-    "custom/split",
     "wireplumber",
-    "custom/split",
     "custom/vpn-status",
     "network",
-    "custom/split",
-    "clock",
-    "custom/split",
-    "idle_inhibitor",
-    "tray"
+    "clock"
   ],
 
   // Separators
@@ -45,6 +40,14 @@
   },
   "custom/sprt": {
     "format": " ",
+    "tooltip": false
+  },
+  "custom/sprt2": {
+    "format": " \\ ",
+    "tooltip": false
+  },
+  "custom/sprt3": {
+    "format": "\\",
     "tooltip": false
   },
 
@@ -75,8 +78,8 @@
   },
 
   "niri/language": {
-    "format-en": "en",
-    "format-ru": "ru",
+    "format-en": "EN",
+    "format-ru": "RU",
     "min-length": 0
   },
 
@@ -127,9 +130,9 @@
     "rfkill": true,
     "format-wifi": "󰖩 {essid}",
     "format-ethernet": "󰌗 LAN",
-    "format-linked": "linked",
-    "format-disconnected": "󰖪 disconnected",
-    "format-disabled": "󱚵 disabled",
+    "format-linked": "Linked",
+    "format-disconnected": "󰖪 Disconnected",
+    "format-disabled": "󱚵 Disabled",
     "tooltip": true,
     "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
     "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask} (/{cidr})",
@@ -140,7 +143,7 @@
 
   "wireplumber": {
     "format": "  {volume}%",
-    "format-muted": " muted",
+    "format-muted": " Muted",
     "interval": 5,
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "exec blueman-manager",
