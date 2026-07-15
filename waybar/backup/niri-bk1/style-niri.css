@@ -1,0 +1,194 @@
+@define-color background #1D2021;
+@define-color background-rgba rgba(29, 32, 33, 0.9);
+@define-color second-background #3C3836;
+@define-color third-background #32302F;
+@define-color text #D5C4A1;
+@define-color focused #FBF1C7;
+@define-color focused-darker #F2E5BC;
+@define-color borders #AF5A25;
+@define-color color1 #939393;
+@define-color color2 #8D7AAE;
+@define-color color3 #3F3F3F;
+@define-color color4 #545454;
+@define-color urgent #CC241D;
+
+@define-color orange-color #C46719;
+@define-color orange-darker-color #D65D0E;
+@define-color gray-color #3C3836;
+@define-color gray-light-color #504945;
+@define-color gray-light2-color #665C54;
+@define-color purple-color #8F3F71;
+@define-color green-color #79740E;
+@define-color red-color #9D0006;
+@define-color blue-color #076678;
+@define-color aqua-color #427B58;
+
+@define-color hover-gray #BDAE93;
+
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-weight: 600;
+  font-size: 16px;
+  min-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+#custom-openbracket,
+#custom-closebracket {
+  margin: 0 5px;
+}
+
+window#waybar {
+  background-color: @background;
+  color: @focused;
+}
+
+window#waybar.empty #window {
+  transition: background-color 0.5s;
+}
+
+tooltip {
+  background-color: rgba(28, 28, 28, 0.9);
+  border: 0px solid @focused;
+  border-radius: 0;
+  color: @focused;
+  padding: 2px 2px;
+}
+
+tooltip label {
+  font-size: 17px;
+  padding: 2px 2px;
+}
+
+button {
+  border: none;
+}
+
+#workspaces button {
+  padding: 0px 8px 0px 8px;
+  margin: 0px 0px 0px 0px;
+  color: @focused;
+  border-radius: 0;
+}
+
+#workspaces button:not(.empty) {
+  color: @focused;
+  border-top: 1px solid @focused;
+}
+
+#workspaces button.empty {
+  color: @focused;
+}
+
+#workspaces button:hover {
+  background-color: @background-color;
+  color: @focused;
+}
+
+#workspaces button.active {
+  background-color: @orange-darker-color;
+}
+
+#workspaces button.urgent {
+  color: @focused;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#mpris {
+  /* margin: 0 0 0 5px; */
+  /* padding: 0 5px; */
+  color: @focused;
+}
+
+#mpris.playing {
+  border-radius: 0;
+  color: @focused;
+}
+
+#window {
+  color: @focused;
+  padding: 0px 5px 0px 5px;
+  margin: 0px;
+}
+
+window#waybar.empty #window {
+  font-style: italic;
+}
+
+#network.ethernet {
+  color: @focused;
+}
+
+#network.wifi {
+  color: @focused;
+}
+
+#network.disconnected {
+  color: @urgent;
+}
+
+#idle_inhibitor {
+  color: @focused-darker;
+}
+
+#clock {
+  color: @focused;
+}
+
+#language {
+  color: @focused;
+}
+
+#wireplumber {
+  color: @focused-darker;
+}
+
+#wireplumber.muted {
+  color: @focused;
+}
+
+#cpu {
+  color: @focused;
+}
+
+#memory {
+  color: @focused;
+}
+
+#mpris,
+#tray,
+#cpu,
+#memory,
+#network,
+#wireplumber,
+#language {
+  color: @focused;
+  padding: 0;
+}
+
+#idle_inhibitor {
+  padding: 0;
+}
+
+#custom-sprt,
+#custom-dec1,
+#custom-sprt2,
+#custom-sprt3,
+#custom-split {
+  color: @focused;
+}
+
+#tray {
+  color: #FFFFFF;
+  padding: 0;
+}
+
+#custom-vpn-status {
+  color: @focused;
+}

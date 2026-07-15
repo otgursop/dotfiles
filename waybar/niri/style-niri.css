@@ -1,127 +1,100 @@
-/* General colors */
-@define-color background #1D2021;
-@define-color bg #282828;
-@define-color bg1 #3C3836;
-@define-color bg2 #504945;
-@define-color text #D5C4A1;
-@define-color focused #FBF1C7;
-@define-color gray #BDAE93;
-@define-color dark #A89984;
-@define-color white #FFFFFF;
-
-/* Dark mode (gruvbox) */
-@define-color red-color #CC241D;
-@define-color green-color #98971A;
-@define-color yellow-color #D79921;
-@define-color blue-color #458588;
-@define-color purple-color #B16286;
-@define-color aqua-color #689d6A;
-@define-color orange-color #D65D0E;
-@define-color orange-bright-color #FE8019;
+@import url("colors.css");
 
 * {
+  border: none;
+  border-radius: 0px;
   font-family: "JetBrainsMono Nerd Font", monospace;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 16px;
-  min-height: 20px;
+  min-height: 0;
+  color: @fg;
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar {
-  background-color: @background;
-  color: @text;
-  padding: 0px 10px;
-}
-
-tooltip {
-  background-color: rgba(28, 28, 28, 0.9);
-  border: 0px solid @focused;
-  border-radius: 0;
-  color: @text;
-  padding: 2px 2px;
-}
-
-tooltip label {
-  font-size: 17px;
-  padding: 2px 2px;
+  background: @bg;
 }
 
 button {
   border: none;
 }
 
-#workspaces button {
-  padding: 0px 7px 0px 7px;
-  margin: 0px 0px 0px 0px;
-  border-radius: 0;
+#workspaces button label {
+  transition: none;
+  padding: 0 10px;
+}
+
+#workspaces button.empty label {
+  color: @fg;
+}
+#workspaces button:not(.empty) label {
+  color: @orange;
 }
 
 #workspaces button:hover {
+  box-shadow: none; 
   transition: none;
+  background: @bg;
 }
 
-#workspaces button:not(.empty) {
-  color: @orange-bright-color;
+#workspaces button.active label {
+  background: @bg;
+  border-bottom: 3px solid @orange;
 }
 
-#workspaces button.empty {
-  color: @gray;
+#clock, #battery, #wireplumber, #language, #custom-weather, #custom-vpn-status, #network, #window {
+  margin: 0 5px;
+  padding: 0 10px;
+}
+#tray {
+  margin: 0 0 0 5px;
+  padding: 0 10px;
 }
 
-#workspaces button.active {
-  border-bottom: 3px solid @orange-color;
+#language {
+  color: @yellow;
+  border-bottom: 3px solid @yellow;
 }
 
-#workspaces button.urgent {
-  color: @red-color;
-  border-bottom: 3px solid @red-color;
+#custom-weather {
+  color: @green;
+  border-bottom: 3px solid @green;
 }
 
-#network.disconnected {
-  color: @red-color;
+#custom-vpn-status {
+  color: @yellow;
+  border-bottom: 3px solid @yellow;
 }
-
-#mpris, #network, #wireplumber, #language, #cpu, #memory,
-#temperature, #clock, #custom-vpn-status, #custom-weather-status {
-  color: @text;
-  padding: 0px 0px;
-  margin: 0px 10px;
-}
-
-#idle_inhibitor {
-  color: @white;
-  margin: 0px 6px 0px 10px;
-}
-
-#custom-sprt,
-#custom-dec1,
-#custom-sprt2,
-#custom-sprt3,
-#custom-split {
-  color: @bg2;
-}
-
-#mpris { color: @red-color; }
-#mpris.playing { color: @aqua-color; }
 
 #network.ethernet,
 #network.linked,
-#network.wifi { color: @aqua-color; }
+#network.wifi { 
+  color: @green;
+  border-bottom: 3px solid @green;
+}
 
-#clock { color: @dark; }
+#network.disconnected {
+  color: @red;
+}
 
-#language { color: @orange-color; }
+#wireplumber {
+  color: @aqua;
+  border-bottom: 3px solid @aqua;
+}
 
-#wireplumber { color: @purple-color; }
-#wireplumber.muted { color: @dark; }
+#wireplumber.muted {
+  padding: 0 20px;
+  color: @red;
+  border-bottom: 3px solid @red;
+}
 
-#cpu { color: @blue-color; }
+#clock {
+  color: @purple;
+  border-bottom: 3px solid @purple;
+}
 
-#memory { color: @blue-color; }
-
-#tray { color: @gray; }
-
-#custom-vpn-status { color: @yellow-color; }
-
-#custom-weather-status { color: @yellow-color; }
-
-#temperature { color: @blue-color; }
+#tray {
+  color: #FFFFFF;
+  border-bottom: 3px solid @orange;
+}

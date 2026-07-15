@@ -1,0 +1,182 @@
+{
+  // General
+  "height": 26,
+  "spacing": 0,
+  "position": "top",
+  "layer": "top",
+
+  // Margin
+  "margin-left": 0,
+  "margin-right": 0,
+
+  // Modules
+  "modules-left": [
+    "niri/workspaces",
+    "custom/sprt",
+    "custom/split",
+    "niri/window"
+  ],
+
+  // "modules-center": [
+  // ],
+
+  "modules-right": [
+    "mpris",
+    "custom/split",
+    "custom/weather-status",
+    "custom/split",
+    "niri/language",
+    "custom/split",
+    "memory",
+    "custom/split",
+    "wireplumber",
+    "custom/split",
+    "custom/vpn-status",
+    "network",
+    "custom/split",
+    "clock",
+    "custom/split",
+    "idle_inhibitor",
+    "custom/split",
+    "tray"
+  ],
+
+  // Separators
+  "custom/split": {
+    "format": "|",
+    "tooltip": false
+  },
+  "custom/sprt": {
+    "format": " ",
+    "tooltip": false
+  },
+
+  // niri
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "*"
+    }
+  },
+
+  "niri/window": {
+    "format": "{}",
+    // "max-length": 150,
+    "expand": true
+  },
+
+  "niri/language": {
+    "format": " {}",
+    "format-en": "EN",
+    "format-ru": "RU",
+    "min-length": 0
+  },
+
+  // Default modules
+  "mpris": {
+    "format": "{status_icon} output",
+    "interval": 1,
+    "dynamic-len": 40,
+    "status-icons": {
+      "playing": "󰏤",
+      "paused": "󰐊",
+      "stopped": "󰏤"
+    },
+    "dynamic-order": ["title", "album", "artist", "position", "length"]
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "tooltip": false,
+    "interval": 2,
+    "on-click": "foot -e htop"
+  },
+
+  "memory": {
+    "format": " {used:0.1f}G/{total:0.1f}G",
+    "tooltip": false,
+    "interval": 2,
+    "on-click": "foot -e htop"
+  },
+
+  "clock": {
+    "interval": 10,
+    "format": " {:%H:%M 󰃰 %d.%m}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+  },
+
+  "network": {
+    "interval": 10,
+    "family": "ipv4",
+    "rfkill": true,
+    "format-wifi": "󰖩 {essid}",
+    "format-ethernet": "󰌗 LAN",
+    "format-linked": "linked",
+    "format-disconnected": "󰖪 disconnected",
+    "format-disabled": "󱚵 disabled",
+    "tooltip": true,
+    "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
+    "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask} (/{cidr})",
+    "tooltip-format-disconnected": "No active connection",
+    "tooltip-format-disabled": "Wireless blocked by rfkill",
+    "on-click": "nm-connection-editor"
+  },
+
+  "wireplumber": {
+    "format": "  {volume}%",
+    "format-muted": " muted",
+    "interval": 5,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "exec blueman-manager",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "scroll-step": 5,
+    "tooltip-format": "{node_name}"
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "interval": 3,
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 5
+  },
+
+  // Custom
+  "custom/vpn-status": {
+    "format": " {}",
+    "exec": "~/.config/waybar/scripts/vpn_status.sh",
+    "interval": 2,
+    "tooltip": false
+  },
+
+  "custom/weather-status": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/weather_status.sh",
+    "interval": 600,
+    "tooltip": false
+  }
+}
