@@ -167,6 +167,7 @@ spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config-niri.jsonc -s ~/.con
 spawn-at-startup "dunst"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "swayidle"
+spawn-at-startup "wlsunset" "-S" "07:00" "-s" "21:00" "-t" "3500" "-T" "6500"
 // Applets
 spawn-at-startup "nm-applet"
 spawn-at-startup "blueman-applet"
@@ -293,13 +294,14 @@ binds {
   Mod+D hotkey-overlay-title="Open File Manager: yazi" { spawn-sh "foot -e yazi"; }
 
   // Open ...
-  Mod+M hotkey-overlay-title="Open Clipboard History: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist_menu.sh"; }
+  Mod+M hotkey-overlay-title="Open Clipboard History: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist-menu.sh"; }
   Mod+Shift+M hotkey-overlay-title="Open Bemoji: fuzzel" { spawn-sh "bemoji -n"; }
-  Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power_menu.sh"; }
-  Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system_menu.sh"; }
+  Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power-menu.sh"; }
+  Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system-menu.sh"; }
+  Mod+W hotkey-overlay-title="Open Wallpaper Select Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/wallpaper-change.sh"; }
   // Run ...
-  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt=' > ' --placeholder='run'"; }
-  Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt=' > ' --placeholder='drun'"; }
+  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt='Run: ' --placeholder='...'"; }
+  Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt='Launch: ' --placeholder='...'"; }
 
   // Screen
   Mod+X hotkey-overlay-title="Copy color: hyprpicker" { spawn-sh "hyprpicker -a"; }
@@ -310,8 +312,8 @@ binds {
   Mod+B hotkey-overlay-title="Toggle waybar" { spawn-sh "killall -SIGUSR1 waybar"; }
 
   // "-l 1.0" limits the volume to 100%.
-  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
   XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
   XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
@@ -321,8 +323,8 @@ binds {
   XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
   XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
 
-  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
   // Open/close the Overview: a zoomed-out view of workspaces and windows.
   // You can also move the mouse into the top-left hot corner,
