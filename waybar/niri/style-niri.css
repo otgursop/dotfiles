@@ -76,6 +76,7 @@ button {
 
 #network.disconnected {
   color: @red;
+  border-bottom: 3px solid @red;
 }
 
 #wireplumber {

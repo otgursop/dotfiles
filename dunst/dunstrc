@@ -92,3 +92,4 @@
     override_pause_level = 60
     default_icon = dialog-warning
 
+# vim: set syntax=dosini :
