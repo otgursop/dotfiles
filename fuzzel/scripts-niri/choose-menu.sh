@@ -1,26 +1,31 @@
 #!/bin/sh
 
-options="ХЗ
+options="Power
+System
+Change wallpaper
+Change GPU power
 Color picker (select color format)"
 
 chosen=$(echo -e "$options" | fuzzel \
     --dmenu \
-    --prompt "Choose menu: " \
-    --lines 4 \
-    --width 25 \
-    --icon-theme Papirus-Dark)
+    --mesg "The selected menu will be opened" \
+    --lines 5 \
+    --width 40)
 
 case "$chosen" in
-    "Clipboard")
-        ~/.config/fuzzel/scripts-niri/cliphist_menu.sh
-        ;;
     "Power")
-        ~/.config/fuzzel/scripts-niri/power_menu.sh
+        ~/.config/fuzzel/scripts-niri/power-menu.sh
         ;;
     "System")
-        ~/.config/fuzzel/scripts-niri/system_menu.sh
+        ~/.config/fuzzel/scripts-niri/system-menu.sh
         ;;
-    "Emoji")
-        bemoji
+    "Change GPU power")
+        ~/.config/fuzzel/scripts-niri/amdgpu-power-menu.sh
+        ;;
+    "Change wallpaper")
+        ~/.config/fuzzel/scripts-niri/wallpaper-change.sh
+        ;;
+    "Color picker (select color format)")
+        ~/.config/fuzzel/scripts-niri/color-picker-menu.sh
         ;;
 esac

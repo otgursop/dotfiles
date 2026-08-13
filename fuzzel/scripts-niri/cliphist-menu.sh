@@ -11,12 +11,12 @@ fi
 
 # Show the list in fuzzel and get the selected item
 # Removed --with-nth because we no longer prepend icon data
-item=$(echo "$cliphist_list" | fuzzel -d --prompt "Clipboard: " --placeholder "..." --lines 12 --width 100)
+item=$(echo "$cliphist_list" | fuzzel -d --placeholder "..."  --mesg "Clipboard: ALT+0 to clear history, ALT+1 to delete selected item" --lines 12 --width 100)
 exit_code=$?
 
 # ALT+0 to clear history (custom-10 in fuzzel.ini)
 if [ "$exit_code" -eq 19 ]; then
-  confirmation=$(echo -e "No\nYes" | fuzzel -d --placeholder "Delete history?" --lines 2)
+  confirmation=$(echo -e "No\nYes" | fuzzel -d --placeholder "Delete history?" --lines 2 --width 25)
   # cliphist wipe is the native and safe way to clear the database
   [ "$confirmation" == "Yes" ] && cliphist wipe
 

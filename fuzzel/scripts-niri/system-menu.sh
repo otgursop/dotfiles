@@ -1,39 +1,23 @@
 #!/bin/bash
 
-options="DDNet (mangohud): launch
-DDNet: launch
+options="TClient (mangohud): launch
+TClient: launch
 udisks2: unmask & start
 udisks2: stop & mask
-xdg-desktop-portal: restart
-"
-# Deprecated
-#Zapret: start
-#Zapret: stop
-
+xdg-desktop-portal: restart"
 
 choice=$(echo -e "$options" | fuzzel \
     --dmenu \
-    --prompt "Control: " \
+    --mesg "System actions" \
     --lines 5 \
     --width 30)
 
 case "$choice" in
-  "DDNet (mangohud): launch") exec mangohud ~/programs/TClient-10.8.7-linux_x86_64/DDNet ;;
+  "TClient (mangohud): launch") exec mangohud ~/programs/TClient-10.8.7-linux_x86_64/DDNet ;;
 
-  "DDNet: launch") exec ~/programs/TClient-10.8.7-linux_x86_64/DDNet ;;
+  "TClient: launch") exec ~/programs/TClient-10.8.7-linux_x86_64/DDNet ;;
 
   "xdg-desktop-portal: restart") systemctl --user restart xdg-desktop-portal ;;
-
-  "Zapret: start")
-    systemctl start zapret \
-    && systemctl is-active --quiet zapret \
-    && notify-send "Zapret has been started" \
-    || notify-send "Failed to start Zapret"
-    ;;
-
-  "Zapret: stop")
-    systemctl stop zapret && notify-send "Zapret has been stopped" || notify-send "Failed to stop Zapret"
-    ;;
 
   "udisks2: unmask & start")
     pkexec systemctl unmask udisks2 \
@@ -50,6 +34,22 @@ case "$choice" in
     && notify-send "udisks2 has been stopped and masked" \
     || notify-send "Failed to stop or mask udisks2"
     ;;
-
-  "") exit 0 ;;
 esac
+
+########################### Deprecated ###########################
+# Zapret: start
+# Zapret: stop
+
+  # "Zapret: start")
+  #   systemctl start zapret \
+  #   && systemctl is-active --quiet zapret \
+  #   && notify-send "Zapret has been started" \
+  #   || notify-send "Failed to start Zapret"
+  #   ;;
+  #
+  # "Zapret: stop")
+  #   systemctl stop zapret && notify-send "Zapret has been stopped" || notify-send "Failed to stop Zapret"
+  #   ;;
+################################################################
+
+

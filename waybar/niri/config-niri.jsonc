@@ -56,7 +56,6 @@
     "on-click": "nm-connection-editor"
   },
 
-
   "wireplumber": {
     "format": "  {volume}%",
     "format-muted": " muted",
@@ -72,7 +71,29 @@
   "clock": {
     "format": "{:%d.%m.%Y - %H:%M}",
     "format-alt": "{:%A, %B %d at %R}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<span size='12pt' font='JetBrainsMono Nerd Font'>{calendar}</span>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "iso8601"     : true, // weeks begins on Monday
+      "format": {
+        "months":     "<span foreground='#ebdbb2'><b>{}</b></span>",
+        "days":       "<span foreground='#ebdbb2'><b>{}</b></span>",
+        "weeks":      "<span foreground='#3c3836'><b>{}</b></span>",
+        "weekdays":   "<span foreground='#d79921'><b>{}</b></span>",
+        "today":      "<span foreground='#689d6a'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }   
   },
 
   "tray": {
@@ -82,7 +103,7 @@
 
   "custom/weather": {
     "class": "weather",
-    "exec": "curl -s 'wttr.in/Chelyabinsk?format=%c%t'",
+    "exec": "curl -s 'wttr.in/Chelyabinsk?format=%c%t' 2>/dev/null",
     "format": "{}",
     "interval": 300,
     "tooltip": false

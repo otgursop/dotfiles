@@ -17,12 +17,6 @@ xwayland-satellite {
   on
 }
 
-// Animations
-animations {
-  off
-  //slowdown 3.0
-}
-
 // Screenshots path to save
 screenshot-path "~/pictures/scrshots-niri/scrshot-%Y-%m-%d-%H-%M-%S.png"
 // Disable saving screenshots to disk.
@@ -31,6 +25,61 @@ screenshot-path "~/pictures/scrshots-niri/scrshot-%Y-%m-%d-%H-%M-%S.png"
 // Hotkey-overlay
 hotkey-overlay {
   skip-at-startup
+}
+
+// Animations
+animations {
+  off
+  // slowdown 3.0
+  
+  workspace-switch {
+    off
+    // spring damping-ratio=1.0 stiffness=1000 epsilon=0.0001
+  }
+
+  window-open {
+    duration-ms 150
+    curve "ease-out-quad"
+    // curve "ease-out-expo"
+  }
+
+  window-close {
+    duration-ms 150
+    curve "ease-out-quad"
+  }
+
+  horizontal-view-movement {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+
+  window-movement {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+
+  window-resize {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+
+  config-notification-open-close {
+    spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+  }
+
+  exit-confirmation-open-close {
+    spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+  }
+
+  screenshot-ui-open {
+    duration-ms 200
+    curve "ease-out-quad"
+  }
+
+  overview-open-close {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+  }
+
+  recent-windows-close {
+    spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+  }
 }
 
 // Input
@@ -64,14 +113,30 @@ input {
 
 cursor {
     // xcursor-theme "breeze_cursors"
-    xcursor-size 10
+    xcursor-size 24
     hide-when-typing
     // hide-after-inactive-ms 1000
 }
 
 // Output
-output "HDMI-A-1" {
-  mode "1920x1080@120.000"
+// output "HDMI-A-1" {
+//   mode "1920x1080@120.000"
+//   scale 1
+//   // variable-refresh-rate
+//   transform "normal"
+//   // position x=1280 y=0
+//
+//   hot-corners {
+//     off
+//     // top-left
+//     // top-right
+//     // bottom-left
+//     // bottom-right
+//   }
+// }
+
+output "DP-1" {
+  mode "1920x1080@143.999"
   scale 1
   // variable-refresh-rate
   transform "normal"
@@ -129,15 +194,17 @@ layout {
     inactive-color "#504945"
     urgent-color "#9b0000"
   }
+
   shadow {
     off
     // Softness controls the shadow blur radius.
-    softness 5
+    softness 40
     // Spread expands the shadow.
     spread 5
     // Offset moves the shadow relative to the window.
     offset x=0 y=5
-    color "#0007"
+    draw-behind-window false
+    color "#00000064"
   }
 
   // Struts shrink the area occupied by windows, similarly to layer-shell panels.
@@ -199,11 +266,20 @@ environment {
   QT_AUTO_SCREEN_SCALE_FACTOR "1"
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 
+  // Applications
+  TERMINAL "foot"
+  TERM "foot"
+
+  // Flatpak
+  XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/hwd/.local/share/flatpak/exports/share"
+  
   // Other useful variables
-  AMD_USERQ "1"
   MOZ_ENABLE_WAYLAND "1"
   _JAVA_AWT_WM_NONREPARENTING "1"
   ELECTRON_OZONE_PLATFORM_HINT "wayland"
+
+  // This feature is currently experimental and requires RDNA 3+ hardware (7000 series and above)
+  // AMD_USERQ "1"
 }
 
 workspace "1" {}
@@ -223,13 +299,18 @@ window-rule {
 
 // Float and center windows by app-id
 window-rule {
-  match app-id=r#"(blueman-manager|blueman-services|nwg-look|org\.qbittorrent\.qBittorrent|kvantummanager|.*-polkit|nm-connection-editor|qt5ct|mpv|vlc|org\.gnome\.eog|qt6ct|qt5ct|imv)"#
+  match app-id=r#"^(blueman-manager|blueman-services|nwg-look|kvantummanager|.*-polkit|nm-connection-editor|mpv|vlc|org\.gnome\.eog|qt6ct|qt5ct|imv)$"#
   open-floating true
 }
 
 // Open with 1.0 proportion
 window-rule {
-  match title=r#"(LibreWolf|FireFox|Firefox|Telegram|Steam)"#
+  // host
+  match title=r#"^(LibreWolf|FireFox|Firefox)$"#
+  match app-id=r#"^(ONLYOFFICE|md\.Obsidian|org\.telegram\.desktop|steam|vesktop)$"#
+  // flatpak
+  match app-id=r#"^(io\.github\.elyprismlauncher\.ElyPrismLauncher)$"# title="^PineconeMC *$"
+
   default-column-width { proportion 1.0; }
   open-maximized false
 }
@@ -244,8 +325,7 @@ window-rule {
 window-rule {
   // - host Firefox (app-id is "firefox")
   // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-  match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-  match app-id=r#"librewolf$"# title="^Picture-in-Picture$"
+  match app-id=r#"^(librewolf|firefox)$"# title="^Picture-in-Picture$"
   open-floating true
 }
 
@@ -253,16 +333,16 @@ window-rule {
 window-rule {
   match app-id=r#"^org\.keepassxc\.KeePassXC$"#
   match app-id=r#"^org\.gnome\.World\.Secrets$"#
-  // match app-id=r#"librewolf"#
+  match app-id=r#"^(librewolf|firefox)$"#
 
-  block-out-from "screen-capture"
+  // block-out-from "screen-capture"
 
   // Use this instead if you want them visible on third-party screenshot tools.
-  // block-out-from "screencast"
+  block-out-from "screencast"
 }
 
 /-window-rule {
-  match app-id=r#"^(steam|Steam|ddnet|DDNet)$"#
+  match app-id=r#"^(steam|DDNet)$"#
   variable-refresh-rate true
 }
 
@@ -279,6 +359,42 @@ window-rule {
   draw-border-with-background false
 }
 
+// Layer rules
+// Notifications
+layer-rule {
+  match namespace="^notifications$"
+  // match at-startup=true
+  // match layer="overlay"
+
+  // Properties that apply continuously.
+  // opacity 0.5
+  block-out-from "screencast"
+  // block-out-from "screen-capture"
+
+  shadow {
+    on
+    softness 10
+    spread 1
+    offset x=0 y=0
+    draw-behind-window false
+    color "#00000064"
+  }
+}
+
+// Menu 
+layer-rule {
+  match namespace="^launcher$"
+
+  shadow {
+    on
+    softness 10
+    spread 1
+    offset x=0 y=0
+    draw-behind-window false
+    color "#00000064"
+  }
+}
+
 binds {
   // Keys consist of modifiers separated by + signs, followed by an XKB key name
   // in the end. To find an XKB name for a particular key, you may use a program
@@ -292,31 +408,30 @@ binds {
 
   // Mod-Shift-/, which is usually the same as Mod-?,
   // shows a list of important hotkeys.
-  Mod+Shift+Slash { show-hotkey-overlay; }
+  // Mod+Shift+Slash { show-hotkey-overlay; }
 
   // Applications
-  Mod+Return hotkey-overlay-title="Open Terminal: foot" { spawn-sh "foot"; }
-  Mod+Shift+Return hotkey-overlay-title="Open Terminal: foot with tmux" { spawn-sh "foot -e tmux"; }
-  Mod+T hotkey-overlay-title="Open Browser: librewolf" { spawn "librewolf"; }
-  Mod+D hotkey-overlay-title="Open File Manager: yazi" { spawn-sh "foot -e yazi"; }
+  Mod+Return { spawn-sh "foot"; }
+  Mod+Shift+Return { spawn-sh "foot -e tmux"; }
+  Mod+T { spawn "librewolf"; }
+  Mod+D { spawn-sh "foot -e yazi"; }
 
-  // Open/Run smth
-  Mod+M hotkey-overlay-title="Open Clipboard History: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist-menu.sh"; }
-  Mod+Shift+M hotkey-overlay-title="Open Bemoji: fuzzel" { spawn-sh "bemoji -n"; }
-  Mod+N hotkey-overlay-title="Open Power Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/power-menu.sh"; }
-  Mod+Shift+N hotkey-overlay-title="Open System Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/system-menu.sh"; }
-  Mod+W hotkey-overlay-title="Open Wallpaper Select Menu: fuzzel" { spawn-sh "~/.config/fuzzel/scripts-niri/wallpaper-change.sh"; }
-  // Launch smth
-  Mod+P hotkey-overlay-title="Run Command: fuzzel" { spawn-sh "fuzzel -I --list-executables-in-path --prompt='Run: ' --placeholder='...'"; }
-  Mod+Shift+P hotkey-overlay-title="Run Application: fuzzel" { spawn-sh "fuzzel --prompt='Launch: ' --placeholder='...'"; }
+  // Menu
+  Mod+O { spawn-sh "~/.config/fuzzel/scripts-niri/cliphist-menu.sh"; }
+  Mod+Shift+O { spawn-sh "bemoji -n"; }
+
+  Mod+P { spawn-sh "~/.config/fuzzel/scripts-niri/choose-menu.sh"; }
+  Mod+Shift+P { spawn-sh "fuzzel --placeholder='...' --mesg='Run an application'"; }
+
+  // Mod+P { spawn-sh "fuzzel -I --list-executables-in-path --placeholder='...'"; }
 
   // Screen
-  Mod+X hotkey-overlay-title="Copy color: hyprpicker" { spawn-sh "hyprpicker -a"; }
-  Mod+S hotkey-overlay-title="Lock the screen: swayidle" { spawn-sh "swaylock -u -F --color 141514"; }
+  Mod+X { spawn-sh "hyprpicker -a -f hex"; }
+  Mod+S { spawn-sh "swaylock -u -F --color 141514"; }
 
   // Bar
-  Mod+Shift+B hotkey-overlay-title="Reload waybar" { spawn-sh "killall -SIGUSR2 waybar"; }
-  Mod+B hotkey-overlay-title="Toggle waybar" { spawn-sh "killall -SIGUSR1 waybar"; }
+  Mod+Shift+B { spawn-sh "killall -SIGUSR2 waybar"; }
+  Mod+B { spawn-sh "killall -SIGUSR1 waybar"; }
 
   // "-l 1.0" limits the volume to 100%.
   XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0"; }
@@ -345,10 +460,10 @@ binds {
   Mod+K     { focus-window-up; }
   Mod+L     { focus-column-right; }
 
-  Mod+Ctrl+H     { move-column-left; }
-  Mod+Ctrl+J     { move-window-down; }
-  Mod+Ctrl+K     { move-window-up; }
-  Mod+Ctrl+L     { move-column-right; }
+  Mod+Shift+H     { move-column-left; }
+  Mod+Shift+J     { move-window-down; }
+  Mod+Shift+K     { move-window-up; }
+  Mod+Shift+L     { move-column-right; }
 
   // Alternative commands that move across workspaces when reaching
   // the first or last window in a column.
@@ -538,9 +653,9 @@ binds {
   Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
   // The quit action will show a confirmation dialog to avoid accidental exits.
-  Mod+Shift+E { quit; }
+  Mod+Shift+M { quit; }
 
   // Powers off the monitors. To turn them back on, do any input like
   // moving the mouse or pressing any other key.
-  Mod+E { power-off-monitors; }
+  Mod+M { power-off-monitors; }
 }

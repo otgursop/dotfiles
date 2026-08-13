@@ -1,37 +1,27 @@
 #!/bin/bash
 
-lock_icon=""
-reboot_icon=""
-power_icon=""
-exit_session_icon="󰈆"
-
-options="$lock_icon Lock
-$exit_session_icon Exit Session
-$reboot_icon Reboot
-$power_icon Power Off"
+options="Lock
+Exit session
+Power off monitors
+Reboot
+Power off"
 
 choice=$(echo -e "$options" | fuzzel \
     --dmenu \
-    --prompt "System: " \
-    --lines 4 \
-    --width 25 \
-    --icon-theme Papirus-Dark)
+    --mesg "Power actions" \
+    --lines 5 \
+    --width 25)
 
 case "$choice" in
-    "$lock_icon Lock")
-        hyprlock --no-fade-in
-        ;;
-    "$exit_session_icon Exit Session")
-        niri msg action quit
-        ;;
-    "$reboot_icon Reboot")
-        systemctl reboot
-        ;;
-    "$power_icon Power Off")
-        systemctl poweroff
-        ;;
-    "")
-        exit 0
-        ;;
+    "Lock")
+        swaylock -u -F --color 141514 ;;
+    "Exit session")
+        niri msg action quit ;;
+    "Power off monitors")
+        niri msg action power-off-monitors ;;
+    "Reboot")
+        systemctl reboot ;;
+    "Power off")
+        systemctl poweroff ;;
 esac
 

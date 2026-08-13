@@ -7,7 +7,7 @@ if [ ! -d "$wallpaper_dir" ]; then
   exit 0
 fi
 
-item=$(find "$wallpaper_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.bmp" \) | fuzzel --dmenu --prompt="Select wallpaper: ")
+item=$(find "$wallpaper_dir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.bmp" \) | fuzzel --dmenu -w 60 --mesg="Change wallpaper")
 
 if [ -n "$item" ]; then
   awww img "$item"
