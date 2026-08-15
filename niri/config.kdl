@@ -229,7 +229,7 @@ layout {
 spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 // Bar
-spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config-niri.jsonc -s ~/.config/waybar/niri/style-niri.css"
+spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config.jsonc -s ~/.config/waybar/niri/style.css"
 // Daemons
 spawn-at-startup "dunst"
 spawn-at-startup "awww-daemon"
@@ -309,7 +309,7 @@ window-rule {
   match title=r#"^(LibreWolf|FireFox|Firefox)$"#
   match app-id=r#"^(ONLYOFFICE|md\.Obsidian|org\.telegram\.desktop|steam|vesktop)$"#
   // flatpak
-  match app-id=r#"^(io\.github\.elyprismlauncher\.ElyPrismLauncher)$"# title="^PineconeMC *$"
+  // match app-id=r#"^(io\.github\.elyprismlauncher\.ElyPrismLauncher)$"#
 
   default-column-width { proportion 1.0; }
   open-maximized false

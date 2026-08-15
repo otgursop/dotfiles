@@ -43,34 +43,42 @@
     "interval": 10,
     "family": "ipv4",
     "rfkill": true,
+
     "format-wifi": "󰖩 {essid}",
-    "format-ethernet": "󰌗 LAN",
+    "format-ethernet": " LAN",
     "format-linked": "linked",
     "format-disconnected": "󰖪 disconnected",
     "format-disabled": "󱚵 disabled",
+    "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ],
+
     "tooltip": true,
-    "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
+    "tooltip-format-wifi": "SSID: {essid}\nBSSID: {bssid}\nIP: {ipaddr}\nSignal strength: {icon} {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} GHz",
     "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}\nNetmask: {netmask} (/{cidr})",
     "tooltip-format-disconnected": "No active connection",
     "tooltip-format-disabled": "Wireless blocked by rfkill",
+
     "on-click": "nm-connection-editor"
   },
 
   "wireplumber": {
     "format": "  {volume}%",
     "format-muted": " muted",
+
     "interval": 5,
+
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "exec blueman-manager",
     "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
     "scroll-step": 5,
+
     "tooltip-format": "{node_name}"
   },
 
   "clock": {
     "format": "{:%d.%m.%Y - %H:%M}",
     "format-alt": "{:%A, %B %d at %R}",
+
     "tooltip-format": "<span size='12pt' font='JetBrainsMono Nerd Font'>{calendar}</span>",
     "calendar": {
       "mode"          : "month",
@@ -87,6 +95,7 @@
         "today":      "<span foreground='#689d6a'><b><u>{}</u></b></span>"
       }
     },
+
     "actions": {
       "on-click-right": "mode",
       "on-click-forward": "tz_up",
