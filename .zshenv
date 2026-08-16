@@ -10,9 +10,9 @@ export LC_ALL='en_US.UTF-8'
 export TERMINAL='foot'
 export TERM='foot'
 
-export SUDO_EDITOR='nvim'
 export EDITOR='nvim'  
 export VISUAL='nvim'
+export SUDO_EDITOR='nvim'
 
 # Desktop
 # export XDG_SESSION_TYPE='wayland'

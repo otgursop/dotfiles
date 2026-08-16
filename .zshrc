@@ -35,8 +35,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 #####################
 
 alias ls="lsd"
-alias cd="z"
-alias cat="bat"
 
 alias sl="cd ~/.local/sl/"
 alias wl="cd ~/.local/wl"
@@ -47,6 +45,7 @@ alias cdp="cd ~/code/cpp/"
 ### SETTINGS
 #####################
 
+# zoxide start
 eval "$(zoxide init zsh)"
 
 #####################
@@ -59,4 +58,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #####################
 ### OTHER
 #####################
-# ...
+
+# GPG pinentry launch correctly
+export GPG_TTY=$(tty)
