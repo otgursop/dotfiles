@@ -1,41 +1,164 @@
 [Added Associations]
+# file manager
 inode/directory=thunar.desktop
 
+# image viewer
 image/png=imv-dir.desktop;gimp.desktop;
 image/jpeg=imv-dir.desktop;
 image/x-dib=imv-dir.desktop;
 
+# file edit
 text/plain=nvim.desktop;
 text/x-log=nvim.desktop;
 application/x-zerosize=nvim.desktop;
 application/octet-stream=nvim.desktop;
 
+# audio
+audio/mpeg=audacious.desktop;
+audio/mp3=audacious.desktop;
+audio/mp4=audacious.desktop;
+audio/x-m4a=audacious.desktop;
+audio/m4a=audacious.desktop;
+audio/aac=audacious.desktop;
+audio/x-aac=audacious.desktop;
+audio/ogg=audacious.desktop;
+audio/x-vorbis+ogg=audacious.desktop;
+audio/x-flac=audacious.desktop;
+audio/flac=audacious.desktop;
+audio/x-wav=audacious.desktop;
+audio/wav=audacious.desktop;
+audio/x-ms-wma=audacious.desktop;
+audio/webm=audacious.desktop;
+audio/x-matroska=audacious.desktop;
+audio/x-musepack=audacious.desktop;
+audio/x-wavpack=audacious.desktop;
+audio/x-tta=audacious.desktop;
+audio/x-ape=audacious.desktop;
+audio/ac3=audacious.desktop;
+audio/x-ac3=audacious.desktop;
+audio/eac3=audacious.desktop;
+audio/dts=audacious.desktop;
+audio/midi=audacious.desktop;
+audio/x-midi=audacious.desktop;
+audio/x-mod=audacious.desktop;
+audio/x-xm=audacious.desktop;
+audio/x-it=audacious.desktop;
+audio/x-s3m=audacious.desktop;
+audio/x-scpls=audacious.desktop;
+audio/x-mpegurl=audacious.desktop;
+application/ogg=audacious.desktop;
+application/x-cue=audacious.desktop;
+application/xspf+xml=audacious.desktop;
+
+# video
+video/mp4=mpv.desktop;
+video/x-matroska=mpv.desktop;
+video/webm=mpv.desktop;
+video/x-msvideo=mpv.desktop;
+video/quicktime=mpv.desktop;
+video/x-flv=mpv.desktop;
+video/mpeg=mpv.desktop;
+video/3gpp=mpv.desktop;
+video/3gpp2=mpv.desktop;
+video/x-m4v=mpv.desktop;
+video/mp2t=mpv.desktop;
+video/ogg=mpv.desktop;
+video/x-ms-wmv=mpv.desktop;
+video/x-ms-asf=mpv.desktop;
+video/x-theora+ogg=mpv.desktop;
+video/dv=mpv.desktop;
+video/x-dv=mpv.desktop;
+application/x-matroska=mpv.desktop;
+
+# browser
 application/pdf=librewolf.desktop;libreoffice-draw.desktop;
 application/vnd.openxmlformats-officedocument.presentationml.slideshow=librewolf.desktop;
 
 [Default Applications]
+# file manager
 inode/directory=thunar.desktop
 
+# image viewer
 image/jpeg=imv-dir.desktop
 image/png=imv-dir.desktop
 image/x-dib=imv-dir.desktop
 
+# file edit
 application/x-zerosize=nvim.desktop
 application/octet-stream=nvim.desktop
 text/plain=nvim.desktop
 text/x-log=nvim.desktop
 
+# audio
+audio/mpeg=audacious.desktop
+audio/mp3=audacious.desktop
+audio/mp4=audacious.desktop
+audio/x-m4a=audacious.desktop
+audio/m4a=audacious.desktop
+audio/aac=audacious.desktop
+audio/x-aac=audacious.desktop
+audio/ogg=audacious.desktop
+audio/x-vorbis+ogg=audacious.desktop
+audio/x-flac=audacious.desktop
+audio/flac=audacious.desktop
+audio/x-wav=audacious.desktop
+audio/wav=audacious.desktop
+audio/x-ms-wma=audacious.desktop
+audio/webm=audacious.desktop
+audio/x-matroska=audacious.desktop
+audio/x-musepack=audacious.desktop
+audio/x-wavpack=audacious.desktop
+audio/x-tta=audacious.desktop
+audio/x-ape=audacious.desktop
+audio/ac3=audacious.desktop
+audio/x-ac3=audacious.desktop
+audio/eac3=audacious.desktop
+audio/dts=audacious.desktop
+audio/midi=audacious.desktop
+audio/x-midi=audacious.desktop
+audio/x-mod=audacious.desktop
+audio/x-xm=audacious.desktop
+audio/x-it=audacious.desktop
+audio/x-s3m=audacious.desktop
+audio/x-scpls=audacious.desktop
+audio/x-mpegurl=audacious.desktop
+application/ogg=audacious.desktop
+application/x-cue=audacious.desktop
+application/xspf+xml=audacious.desktop
+
+# video
+video/mp4=mpv.desktop
+video/x-matroska=mpv.desktop
+video/webm=mpv.desktop
+video/x-msvideo=mpv.desktop
+video/quicktime=mpv.desktop
+video/x-flv=mpv.desktop
+video/mpeg=mpv.desktop
+video/3gpp=mpv.desktop
+video/3gpp2=mpv.desktop
+video/x-m4v=mpv.desktop
+video/mp2t=mpv.desktop
+video/ogg=mpv.desktop
+video/x-ms-wmv=mpv.desktop
+video/x-ms-asf=mpv.desktop
+video/x-theora+ogg=mpv.desktop
+video/dv=mpv.desktop
+video/x-dv=mpv.desktop
+application/x-matroska=mpv.desktop
+
+# browser
 text/html=librewolf.desktop
 x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
 x-scheme-handler/about=librewolf.desktop
 x-scheme-handler/unknown=librewolf.desktop
 
+# discord
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/discord-1325361453988970527=discord-1325361453988970527.desktop
 
+# onlyoffice
 application/pdf=onlyoffice-desktopeditors.desktop
-
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop
 application/msword=onlyoffice-desktopeditors.desktop
 application/vnd.oasis.opendocument.text=onlyoffice-desktopeditors.desktop
@@ -46,6 +169,5 @@ application/vnd.openxmlformats-officedocument.presentationml.presentation=onlyof
 application/vnd.openxmlformats-officedocument.presentationml.slideshow=onlyoffice-desktopeditors.desktop
 application/vnd.ms-powerpoint=onlyoffice-desktopeditors.desktop
 application/vnd.oasis.opendocument.presentation=onlyoffice-desktopeditors.desktop
-
 application/x-zip-compressed=onlyoffice-desktopeditors.desktop
 

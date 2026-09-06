@@ -5,7 +5,7 @@ cliphist_list=$(cliphist list)
 
 # If the list is empty, show a message and exit
 if [ -z "$cliphist_list" ]; then
-  fuzzel -d --prompt-only "cliphist: please store something first"
+  fuzzel -d --prompt-only "Cliphist: clean"
   exit 0
 fi
 

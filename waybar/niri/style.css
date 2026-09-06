@@ -80,13 +80,14 @@ tooltip label {
   border-bottom: 3px solid @yellow;
 }
 
-#network.ethernet,
 #network.linked,
+#network.ethernet,
 #network.wifi { 
   color: @green;
   border-bottom: 3px solid @green;
 }
 
+#network.disabled,
 #network.disconnected {
   color: @red;
   border-bottom: 3px solid @red;
