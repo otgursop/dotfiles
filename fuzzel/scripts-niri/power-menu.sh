@@ -14,7 +14,7 @@ choice=$(echo -e "$options" | fuzzel \
 
 case "$choice" in
     "Lock")
-        swaylock -u -F --color 141514 ;;
+        hyprlock ;;
     "Exit session")
         niri msg action quit ;;
     "Power off monitors")

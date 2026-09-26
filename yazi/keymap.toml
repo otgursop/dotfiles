@@ -2,17 +2,12 @@
 
 keymap = [
   # Custom
-  { on = [ "u", "z" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh zip $@" --block', desc = "zip: Compress" },
-  { on = [ "u", "Z" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh unzip $@" --block', desc = "zip: Decompress" },
 
-  { on = [ "u", "t" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh tar $@" --block', desc = "tar: Compress" },
-  { on = [ "u", "T" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh untar $@" --block', desc = "tar: Decompress" },
+  # Archive plugin
+  # nothing...
 
-  { on = [ "u", "g" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh gzip $@" --block', desc = "gzip: Compress" },
-  { on = [ "u", "G" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh gunzip $@" --block', desc = "gzip: Decompress" },
-
-  { on = [ "u", "s" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh 7z $@" --block', desc = "7zip: Compress" },
-  { on = [ "u", "S" ], run = 'shell "~/.config/yazi/scripts/yazi-archive.sh 7x $@" --block', desc = "7zip: Decompress" },
+  # Mount plugin
+  { on  = "M",    run = "plugin mount",       desc = "Open mount menu" },
 
   # General
   { on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },

@@ -7,7 +7,7 @@ if [[ -z "${HOME:-}" ]]; then
     exit 1
 fi
 
-TCLIENT_DIR="${TCLIENT_DIR:-$HOME/programs/TClient-10.8.7-linux_x86_64}"
+TCLIENT_DIR="${TCLIENT_DIR:-$HOME/programs/TClient-10.9-linux_x86_64}"
 TCLIENT_BIN="$TCLIENT_DIR/DDNet"
 
 notify() {

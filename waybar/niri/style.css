@@ -3,11 +3,13 @@
 * {
   border: none;
   border-radius: 0px;
-  font-family: "JetBrainsMono Nerd Font", monospace;
+
+  font-family: "JetBrainsMono Nerd Font", "Unifont", monospace;
   font-weight: bold;
   font-size: 16px;
+
   min-height: 0;
-  color: @fg;
+
   margin: 0;
   padding: 0;
 }
@@ -24,13 +26,16 @@ tooltip {
   background-color: @bg;
   border: 3px solid @yellow;
   border-radius: 0;
-  color: @fg;
-  padding: 2px 2px;
 }
 
 tooltip label {
+  color: @fg;
   font-size: 17px;
   padding: 2px 2px;
+}
+
+#window {
+  color: @fg;
 }
 
 #workspaces button label {
@@ -56,13 +61,12 @@ tooltip label {
   border-bottom: 3px solid @orange;
 }
 
-#clock, #wireplumber, #language, #custom-weather, #custom-vpn-status, #network, #window, #cpu, #memory {
+#clock, #wireplumber, #language, #custom-weather, #custom-vpn-status, #network, #window, #cpu, #memory, #tray {
   margin: 0 5px;
   padding: 0 10px;
 }
 #tray {
   margin: 0 0 0 5px;
-  padding: 0 10px;
 }
 
 #language {
@@ -109,6 +113,5 @@ tooltip label {
 }
 
 #tray {
-  color: #FFFFFF;
   border-bottom: 3px solid @orange;
 }

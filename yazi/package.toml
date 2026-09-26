@@ -5,8 +5,8 @@ hash = "7b625412411be411153886894d9acaf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "39aaf6d"
-hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+rev = "58c4f4e"
+hash = "b95f898e6dc60b52edbc415952e14395"
 
 [[flavor.deps]]
 use = "matt-dong-123/gruvbox-material"

@@ -190,7 +190,7 @@ layout {
   border {
     width 3
     active-color "#d65d0e"
-    // active-gradient from="#d65d0e" to="#d79921" angle=90 relative-to="workspace-view"
+    // active-gradient from="#d65d0e" to="#d79921" angle=180 relative-to="workspace-view"
     inactive-color "#504945"
     urgent-color "#9b0000"
   }
@@ -234,7 +234,7 @@ spawn-sh-at-startup "waybar -c ~/.config/waybar/niri/config.jsonc -s ~/.config/w
 spawn-at-startup "dunst"
 spawn-at-startup "awww-daemon"
 spawn-at-startup "swayidle"
-spawn-at-startup "wlsunset" "-S" "07:00" "-s" "21:00" "-t" "3500" "-T" "6500"
+spawn-at-startup "wlsunset" "-S" "07:00" "-s" "21:00" "-t" "5500" "-T" "4500"
 // Applets
 spawn-at-startup "nm-applet"
 spawn-at-startup "blueman-applet"
@@ -246,7 +246,7 @@ spawn-sh-at-startup "wl-paste --watch cliphist store"
 // Environment variables
 environment {
   // Rendering
-  GSK_RENDERER "vulkan"
+  // GSK_RENDERER "vulkan"
   GDK_BACKEND "wayland"
   SDL_VIDEODRIVER "wayland"
   LIBVA_DRIVER_NAME "radeonsi"
@@ -257,28 +257,26 @@ environment {
   DESKTOP_SESSION "niri"
   XDG_CURRENT_DESKTOP "niri"
   XDG_SESSION_DESKTOP "niri"
-  CLUTTER_BACKEND "wayland"
+  // CLUTTER_BACKEND "wayland"
   QT_QPA_PLATFORM "wayland"
 
   // Appearance
   QT_QPA_PLATFORMTHEME "qt5ct"
   QT_STYLE_OVERRIDE "kvantum"
-  QT_AUTO_SCREEN_SCALE_FACTOR "1"
+  // QT_AUTO_SCREEN_SCALE_FACTOR "1"
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
 
   // Applications
   TERMINAL "foot"
-  TERM "foot"
 
   // Flatpak
   XDG_DATA_DIRS "/usr/local/share:/usr/share:/var/lib/flatpak/exports/share:/home/hwd/.local/share/flatpak/exports/share"
   
   // Other useful variables
-  MOZ_ENABLE_WAYLAND "1"
+  // MOZ_ENABLE_WAYLAND "1"
   _JAVA_AWT_WM_NONREPARENTING "1"
   ELECTRON_OZONE_PLATFORM_HINT "wayland"
 
-  // This feature is currently experimental and requires RDNA 3+ hardware (7000 series and above)
   // AMD_USERQ "1"
 }
 
@@ -373,11 +371,11 @@ layer-rule {
 
   shadow {
     on
-    softness 10
+    softness 5
     spread 1
     offset x=0 y=0
     draw-behind-window false
-    color "#00000064"
+    color "#00000050"
   }
 }
 
@@ -387,11 +385,11 @@ layer-rule {
 
   shadow {
     on
-    softness 10
+    softness 5
     spread 1
     offset x=0 y=0
     draw-behind-window false
-    color "#00000064"
+    color "#00000050"
   }
 }
 
@@ -427,7 +425,7 @@ binds {
 
   // Screen
   Mod+X { spawn-sh "hyprpicker -a -f hex"; }
-  Mod+S { spawn-sh "swaylock -u -F --color 141514"; }
+  Mod+S { spawn-sh "hyprlock"; }
 
   // Bar
   Mod+Shift+B { spawn-sh "killall -SIGUSR2 waybar"; }

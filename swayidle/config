@@ -1,3 +1,5 @@
-timeout 1500 "swaylock -u -F --color 141514"
-before-sleep "swaylock -u -F --color 141514"
-lock "swaylock -u -F --color 141514"
+timeout 1500 "hyprlock"
+before-sleep "hyprlock"
+lock "hyprlock"
+
+timeout 3000 "niri msg action power-off-monitors"
