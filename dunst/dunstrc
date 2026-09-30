@@ -19,7 +19,7 @@
   icon_corners = all
 
   indicate_hidden = yes
-  transparency = 0
+  transparency = 1
   separator_height = 2
   padding = 8
   horizontal_padding = 8
@@ -66,9 +66,9 @@
   force_xwayland = false
   force_xinerama = false
 
-  mouse_left_click = close_current
-  mouse_middle_click = do_action, remove_current
-  mouse_right_click = context
+  mouse_left_click = do_action, remove_current
+  mouse_middle_click = context
+  mouse_right_click = close_current
 
 [experimental]
   per_monitor_dpi = false

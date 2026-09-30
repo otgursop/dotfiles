@@ -8,14 +8,14 @@ export LC_ALL='en_US.UTF-8'
 
 # programs
 export TERMINAL='foot'
-export TERM='foot'
+# export TERM='foot'
 
 export EDITOR='nvim'  
 export VISUAL='nvim'
 export SUDO_EDITOR='nvim'
 
 # logging
-export YAZI_LOG='debug'
+# export YAZI_LOG='debug'
 
 # AMD renderer
 # export AMD_USERQ='1'

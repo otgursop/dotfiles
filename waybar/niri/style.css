@@ -3,8 +3,7 @@
 * {
   border: none;
   border-radius: 0px;
-
-  font-family: "JetBrainsMono Nerd Font", "Unifont", monospace;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans Mono", "Noto Sans Mono CJK SC", "Noto Color Emoji", "Noto Sans Symbols", monospace;
   font-weight: bold;
   font-size: 16px;
 
